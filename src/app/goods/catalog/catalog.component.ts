@@ -20,6 +20,7 @@ export class CatalogComponent implements OnInit {
   reversedPrice = false;
   reversedQuantity = false;
   sortBy: string;
+  sortWith: string;
   category: string;
 
 

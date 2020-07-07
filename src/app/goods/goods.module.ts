@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchFPipe } from './pipes/search-f.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { YPipe } from './pipes/y.pipe';
+import { CategoryPipe } from './pipes/category.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { YPipe } from './pipes/y.pipe';
     GoodsComponent,
     SearchFPipe,
     SortPipe,
-    YPipe
+    YPipe,
+    CategoryPipe
   ],
   imports: [
     CommonModule,

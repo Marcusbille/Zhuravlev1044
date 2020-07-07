@@ -13,6 +13,15 @@
                     <option value="quantityReversed">Количество(убывание)</option>
                 </select>
         </div>
+        <div class="d-flex ml-2 col-2 px-0">
+            <select class="custom-select btn-info shadow" (change)="sortWith = ($event.target.value)">
+                    <option [selected]=true value="All">ВСЁ</option>
+                    <option value="Mebel">Мебель</option>
+                    <option value="Tetch">Техника</option>
+                    <option value="Books">Книги</option>
+                    <option value="Phones">Телефоны</option>
+                </select>
+        </div>
     </div>
     <div class="table-things mt-3" *ngIf="goods.length>0">
         <div class="table" *ngIf="(getAll() | searchFilter:searchStr).length > 0">
@@ -40,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="row py-1 border shadow align-items-center mt-2 mx-0" *ngFor="let thing of getAll() | searchFilter: searchStr | sortBy: sortBy | yFilter:checked">
+        <div class="row py-1 border shadow align-items-center mt-2 mx-0" *ngFor="let thing of getAll() | searchFilter: searchStr | sortBy: sortBy | yFilter:checked | catFilter: sortWith">
             <div class="col-1 font-weight-bold">{{thing.artic}}</div>
             <div class="col-2">{{thing.name}}</div>
             <div class="col-1">{{thing.price}}</div>
