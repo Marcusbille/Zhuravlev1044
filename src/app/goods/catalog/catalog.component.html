@@ -1,0 +1,61 @@
+<div class="container-fluid px-5">
+    <div class="add-new text-right mt-3 d-flex col-8 justify-content-between align-items-center">
+        <input type="text" class="form-control shadow" placeholder="Фильтрация по названию и артиклу" [(ngModel)]="searchStr">
+        <button class="btn shadow col-3 ml-2 btn-info" (click)="onAddThing()">Добавить товар</button>
+        <label for="checher">Только товар в наличии</label>
+        <input class="col-1" type="checkbox" name="checher" [checked]="false" [(ngModel)]="checked">
+        <div class="sortBy d-flex ml-2 col-2 px-0">
+            <select class="custom-select btn-info shadow" (change)="sortBy = ($event.target.value)">
+                    <option [selected]=true>Сортировка</option>
+                    <option value="price" (click)="sortBy = 'price'; reversedPrice=false">Цена(возрастание)</option>
+                    <option value="priceReversed">Цена(убывание)</option>
+                    <option value="quantity">Количество(возрастание)</option>
+                    <option value="quantityReversed">Количество(убывание)</option>
+                </select>
+        </div>
+    </div>
+    <div class="table-things mt-3" *ngIf="goods.length>0">
+        <div class="table" *ngIf="(getAll() | searchFilter:searchStr).length > 0">
+            <div class="row  d-flex align-items-center font-weight-bold mx-0 mt-1">
+                <div class="col-1">
+                    Артикул
+                </div>
+                <div class="col-2">
+                    Название
+                </div>
+                <div class="col-1">
+                    Цена (Доллары)
+                </div>
+                <div class="col-1">
+                    Категория
+                </div>
+                <div class="col-1">
+                    Вес (Кг)
+                </div>
+                <div class="col-2">
+                    Производитель
+                </div>
+                <div class="col-1">
+                    Количество (Шт)
+                </div>
+            </div>
+        </div>
+        <div class="row py-1 border shadow align-items-center mt-2 mx-0" *ngFor="let thing of getAll() | searchFilter: searchStr | sortBy: sortBy | yFilter:checked">
+            <div class="col-1 font-weight-bold">{{thing.artic}}</div>
+            <div class="col-2">{{thing.name}}</div>
+            <div class="col-1">{{thing.price}}</div>
+            <div class="col-1">{{getCategory(thing)}}</div>
+            <div class="col-1">{{thing.weight}}</div>
+            <div class="col-1">{{thing.manufacturer}}</div>
+            <div class="col-2">
+                <div class="col-7">{{thing.quantity}}</div>
+                <button class="btn btn-primary btn-sm col-2" (click)="more(thing)">+</button>
+                <button class="btn btn-primary btn-sm col-2" (click)="less(thing)">-</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-secondary btn-sm col-4 p-1" (click)="onEditThing(thing.id)">Редактировать</button>
+                <button class="btn btn-danger btn-sm col-4 ml-1 p-1" (click)="onDelete(thing.id)">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>

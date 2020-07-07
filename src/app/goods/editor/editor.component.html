@@ -1,0 +1,40 @@
+<div class="container mt-2 col-4 mx-auto">
+    <form [formGroup]="thingForm">
+        <div class="form-group">
+            <label for="thingname">Название</label>
+            <input type="text" class="form-control" formControlName="name" id="thingname">
+        </div>
+        <div class="form-group">
+            <label for="thingId">Артикул(номер товара)</label>
+            <input type="text" class="form-control" formControlName="artic" id="thingId">
+        </div>
+        <div class="form-group">
+            <label for="thingCat">Категория</label>
+            <select class="custom-select" formControlName="category" id="thingCat">
+                <option [ngValue]="goodsSection.mebel">Мебель</option>
+                <option [ngValue]="goodsSection.tech">Техника</option>
+                <option [ngValue]="goodsSection.books">Книги</option>
+                <option [ngValue]="goodsSection.iphones">Телефоны</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="thingMan">Производитель</label>
+            <input type="text" class="form-control" formControlName="manufacturer" id="thingMan">
+        </div>
+        <div class="form-group">
+            <label for="thingWeight">Вес (Кг)</label>
+            <input type="text" class="form-control" formControlName="weight" id="thingWeight">
+        </div>
+        <div class="form-group">
+            <label for="thingPrice">Цена (Доллары)</label>
+            <input type="text" class="form-control" formControlName="price" id="thingPrice">
+        </div>
+        <div class="form-group">
+            <label for="thingQua">Количество (Шт)</label>
+            <input type="text" class="form-control" formControlName="quantity" id="thingQua">
+        </div>
+        <button class="btn shadow btn-primary col-3" [disabled]="!thingForm.valid" (click)="onSave()">Сохранить</button>
+        <button class="btn shadow btn-danger ml-3 col-2" *ngIf="id != null" (click)="onDelete()">Удалить</button>
+        <a class="btn shadow btn-warning text-light ml-3 col-4" [routerLink]="['/goods']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact : true}">Выйти</a>
+    </form>
+</div>
